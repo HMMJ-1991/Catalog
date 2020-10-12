@@ -14,7 +14,11 @@
         <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
       </p> -->
 
-      <img src="assets/images/p1_001.jpg" width="100px;" height="100px;" alt="">
+      <div class="row">
+        <div class="col-sm-2" *ngFor="let image of imageList">
+                <img [src]="image" width="100px;" height="100px;" alt="">
+        </div>
+      </div>
 
 
   </div>
@@ -43,6 +47,8 @@
               </div><!--grid-->
           </div>
       </div>
+
+      <!-- paginatin section -->
       <div class="row gallery-bottom">
           <div class="col-sm-6">
               <ul class="pagination">
@@ -67,6 +73,8 @@
               <em>Displaying 1 to 8 (of 100 posts)</em>
           </div>
       </div>
+
+      <!-- end of pagination -->
   <!-- </div> -->
 </div>
 

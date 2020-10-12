@@ -1,7 +1,7 @@
 [
-  { "id":"001", "name":"Furniture", "image":[]},
-  {"id":"002", "name":"Cosmatics", "image":[]},
-  { "id":"003", "name":"Food", "image":[]},
-  {"id":"004", "name":"Stationary Items", "image":[]},
-  {"id":"005", "name":"Home Appliences", "image":[]}
+  { "id":"001", "name":"Furniture", "image":["assets/images/p1_001.jpg", "assets/images/p1_002.jpg"]},
+  {"id":"002", "name":"Cosmatics", "image":["assets/images/p2_001.jpg"]},
+  { "id":"003", "name":"Food", "image":["assets/images/p3_001.jpg", "assets/images/p3_002.jpg"]},
+  {"id":"004", "name":"Stationary Items", "image": ["assets/images/p4_004.jpg", "assets/images/p4_001.jpg"]},
+  {"id":"005", "name":"Home Appliences", "image": ["assets/images/p5_001.jpg"]}
 ]

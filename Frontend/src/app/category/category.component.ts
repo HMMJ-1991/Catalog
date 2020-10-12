@@ -20,13 +20,15 @@ export class CategoryComponent implements OnInit{
   id : string;
   name : string;
   singleProductView : boolean = false;
+  imageList : string[] = [''];
 
   constructor( private sharedService : SharedService){
 
     this.categoryList = categories;
    this.categorySelected = this.categoryList[0].name;
    this.categorySelectedId = this.categoryList[0].id;
-   console.log(this.categoryList[0].name);
+   console.log(this.categoryList[0].image);
+   this.imageList = this.categoryList[0].image;
 
   }
 
@@ -38,6 +40,7 @@ export class CategoryComponent implements OnInit{
     this.categorySelectedId = category.id;
     this.sharedService.clickedId = category.id;
     this.sharedService.sendClickEvent(category.id);
+    this.imageList = category.image;
 
   }
 

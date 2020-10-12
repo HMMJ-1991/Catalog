@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   @Input() currentCategoryId:string;
   @Input() singleProductView : boolean;
   productsView : boolean = true;
+  @Input() imageList : string[];
 
   productList : Product[];
 

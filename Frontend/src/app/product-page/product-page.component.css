@@ -1,3 +1,20 @@
 .margin40 {
     margin-bottom: 40px;
 }
+
+.jumbotron{
+  padding: 20px;
+}
+
+.product-carousel{
+  height: 250px;
+  padding: 0px;
+}
+
+.carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover{
+  background: #928e8e;
+}
+
+.carousel-control-next:hover{
+  background: red;
+}
