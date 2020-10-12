@@ -2,6 +2,15 @@ body{margin-top:20px;}
 
 .margin40 {
     margin-bottom: 40px;
+    background: #f9f7f7;
+}
+
+.img-wrapper{
+  min-height: 300px;
+}
+
+.img-layout{
+  max-height: 300px;
 }
 
 .item-img-wrap {
