@@ -1,7 +1,7 @@
 [
-  { "id":"001", "name":"Furniture"},
-  {"id":"002", "name":"Cosmatics"},
-  { "id":"003", "name":"Food"},
-  {"id":"004", "name":"Stationary Items"},
-  {"id":"005", "name":"Home Appliences"}
+  { "id":"001", "name":"Furniture", "image":[]},
+  {"id":"002", "name":"Cosmatics", "image":[]},
+  { "id":"003", "name":"Food", "image":[]},
+  {"id":"004", "name":"Stationary Items", "image":[]},
+  {"id":"005", "name":"Home Appliences", "image":[]}
 ]

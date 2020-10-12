@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Product } from '../product';
+import products from '../files/products.json'
+
 
 @Component({
   selector: 'app-product',
@@ -9,9 +12,19 @@ export class ProductComponent implements OnInit {
 
   @Input() currentCategory:string;
   @Input() currentCategoryId:string;
-  constructor() { }
+  productList : Product[];
+
+  constructor() {
+
+  }
+
+
+    fetchProducts(){
+          this.productList = products[this.currentCategoryId];
+    }
 
   ngOnInit(): void {
+    this.productList = products[this.currentCategoryId];
   }
 
 }
