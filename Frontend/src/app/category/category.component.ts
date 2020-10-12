@@ -19,20 +19,20 @@ export class CategoryComponent implements OnInit{
   categorySelectedId : string;
   id : string;
   name : string;
+  singleProductView : boolean = false;
 
   constructor( private sharedService : SharedService){
 
     this.categoryList = categories;
-   // this.categoryList = [ { id:'001', name:'Furniture'}, {id:'002', name:'Cosmatics'}, {id:'003', name:'Food'}, {id:'004', name:'Stationary Items'}];
-   // this.categoryList = [ 'Furniture', 'Cosmatics', 'Food', 'Stationary Items'];
-   // this.category = this.categoryList[0];
    this.categorySelected = this.categoryList[0].name;
    this.categorySelectedId = this.categoryList[0].id;
    console.log(this.categoryList[0].name);
 
   }
 
-
+/*
+* select a category to view products
+*/
   selectCategory(category){
     this.categorySelected = category.name;
     this.categorySelectedId = category.id;

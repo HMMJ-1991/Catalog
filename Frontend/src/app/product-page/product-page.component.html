@@ -1,0 +1,30 @@
+
+<div class="jumbotron" *ngIf="singleProductView">
+  <h3>{{product.name}} for Price : {{product.price}}</h3>
+  <p>Category Description</p>
+  <!-- <p>To see the difference between static and fixed top navbars, just scroll.</p> -->
+  <!-- <p>
+    <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+  </p> -->
+
+  <img [src]="product.images[0]" alt="">
+
+<ngb-carousel *ngIf="product.images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+  <ng-template ngbSlide *ngFor="let image of product.images">
+    <div class="picsum-img-wrapper">
+      <img [src]="image" alt="Random slide">
+    </div>
+    <div class="carousel-caption">
+
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<hr>
+
+<div class="btn-group" role="group" aria-label="Carousel toggle controls">
+  <button type="button" (click)="showNavigationArrows = !showNavigationArrows" class="btn btn-outline-dark btn-sm">Toggle navigation arrows</button>
+  <button type="button" (click)="showNavigationIndicators = !showNavigationIndicators" class="btn btn-outline-dark btn-sm">Toggle navigation indicators</button>
+</div>
+
+</div>

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageContentComponent } from './page-content/page-content.component';
 import { ProductComponent } from './product/product.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProductComponent } from './product/product.component';
     AppComponent,
     CategoryComponent,
     PageContentComponent,
-    ProductComponent
+    ProductComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

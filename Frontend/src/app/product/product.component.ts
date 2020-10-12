@@ -13,9 +13,12 @@ export class ProductComponent implements OnInit {
 
   @Input() currentCategory:string;
   @Input() currentCategoryId:string;
+  @Input() singleProductView : boolean;
+  productsView : boolean = true;
+
   productList : Product[];
 
-  constructor(private sharedService:SharedService) {
+  constructor(private sharedService : SharedService) {
 
 console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clickedId);
 
@@ -26,13 +29,35 @@ console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clicke
 
   clickEventSubscription : Subscription;
 
-
+/*
+* Fetch all products of a particular category
+*/
     fetchProducts(){
       console.log("shared service is triggered");
 
-          // this.productList = products[this.currentCategoryId];
           this.productList = products[this.sharedService.clickedId];
+          this.productsView = true;
+          this.singleProductView =false;
+
     }
+
+
+
+/**
+* view single product
+*/
+  viewProduct(product){
+    console.log(" product view is called with id " + product.price);
+
+    this.sharedService.clickedId = product.id;
+    this.sharedService.product = product;
+    this.sharedService.sendProductClickEvent(product);
+    this.singleProductView = true;
+    this.productsView = false;
+
+
+  }
+
 
   ngOnInit(): void {
     this.productList = products[this.currentCategoryId];

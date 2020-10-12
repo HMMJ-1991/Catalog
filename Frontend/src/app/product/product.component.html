@@ -5,9 +5,9 @@
 </div> -->
 
 
-
-    <div class="jumbotron">
-      <h1>{{currentCategory}}, Category Code: {{currentCategoryId}}</h1>
+<div for="products-view">
+    <div class="jumbotron"  *ngIf="productsView" >
+      <h3>{{currentCategory}}, Category Code: {{currentCategoryId}}</h3>
       <p>Category Description</p>
       <!-- <p>To see the difference between static and fixed top navbars, just scroll.</p> -->
       <!-- <p>
@@ -21,15 +21,15 @@
 
   <!-- gallery -->
   <!-- <div class="container"> -->
-      <div class="row">
+      <div class="row"  *ngIf="productsView" >
           <div class="col-md-12">
               <div id="grid" class="row">
 
                   <div *ngFor="let product of productList" class="mix col-sm-4 page1 page4 margin40">
                       <div class="item-img-wrap ">
-                          <img  [src]="product.images[0]" class="img-responsive" alt="workimg">
+                          <img  [src]="product.images[0]" class="img-responsive" alt="workimg" (click)="viewProduct(product)">
                           <div class="item-img-overlay">
-                              <a href="#" class="show-image">
+                              <a href="#" class="show-image" (click) = "viewProduct(product)">
                                   <span>{{product.name}}</span>
                               </a>
                           </div>
@@ -68,3 +68,7 @@
           </div>
       </div>
   <!-- </div> -->
+</div>
+
+
+  <app-product-page [singleProductView]="singleProductView"></app-product-page>
