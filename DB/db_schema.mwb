@@ -1,0 +1,248 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Category` (
+  `cateogry_id` VARCHAR(100) NOT NULL,
+  `category_name` VARCHAR(45) NULL,
+  `category_description` VARCHAR(200) NULL,
+  PRIMARY KEY (`cateogry_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Product` (
+  `product_id` VARCHAR(100) NOT NULL,
+  `product_name` VARCHAR(45) NULL,
+  `price` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
+  `Productcol` VARCHAR(200) NULL,
+  PRIMARY KEY (`product_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Product_Category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Product_Category` (
+  `product_id` VARCHAR(100) NOT NULL,
+  `category_id` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`product_id`, `category_id`),
+  INDEX () INVISIBLE,
+  INDEX `category_id_idx` (`category_id` ASC) VISIBLE,
+  CONSTRAINT `product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `mydb`.`Product` (`product_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `category_id`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `mydb`.`Category` (`cateogry_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Image_Type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Image_Type` (
+  `img_type_id` VARCHAR(100) NOT NULL,
+  `type_name` VARCHAR(45) NULL,
+  `description` VARCHAR(100) NULL,
+  PRIMARY KEY (`img_type_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Image`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Image` (
+  `image_id` VARCHAR(100) NOT NULL,
+  `img_type_id` VARCHAR(100) NULL,
+  `relation_id` VARCHAR(100) NULL,
+  `location` VARCHAR(500) NULL,
+  PRIMARY KEY (`image_id`),
+  INDEX `img_type_id_idx` (`img_type_id` ASC) VISIBLE,
+  INDEX `relation_id_idx` (`relation_id` ASC) VISIBLE,
+  CONSTRAINT `img_type_id`
+    FOREIGN KEY (`img_type_id`)
+    REFERENCES `mydb`.`Image_Type` (`img_type_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `cat_relation_id`
+    FOREIGN KEY (`relation_id`)
+    REFERENCES `mydb`.`Category` (`cateogry_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `prod_relation_id`
+    FOREIGN KEY (`relation_id`)
+    REFERENCES `mydb`.`Product` (`product_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Role_Group`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Role_Group` (
+  `group_id` VARCHAR(100) NOT NULL,
+  `role_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`group_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Role`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Role` (
+  `role_id` VARCHAR(100) NOT NULL,
+  `role_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`role_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Role_Group_Role`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Role_Group_Role` (
+  `role_group_role_id` VARCHAR(100) NOT NULL,
+  `role_id` VARCHAR(100) NULL,
+  `role_group_id` VARCHAR(45) NULL,
+  PRIMARY KEY (`role_group_role_id`),
+  INDEX `role_group_id_idx` (`role_group_id` ASC) VISIBLE,
+  INDEX `role_id_idx` (`role_id` ASC) VISIBLE,
+  CONSTRAINT `role_group_id`
+    FOREIGN KEY (`role_group_id`)
+    REFERENCES `mydb`.`Role_Group` (`group_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `role_id`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `mydb`.`Role` (`role_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Permission`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Permission` (
+  `permission_id` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`permission_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Role_Permission`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Role_Permission` (
+  `role_permisiion_id` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `role_id` VARCHAR(100) NULL,
+  `permission_id` VARCHAR(100) NULL,
+  PRIMARY KEY (`role_permisiion_id`),
+  INDEX `role_id_idx` (`role_id` ASC) VISIBLE,
+  INDEX `permission_id_idx` (`permission_id` ASC) VISIBLE,
+  CONSTRAINT `role_id`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `mydb`.`Role` (`role_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `permission_id`
+    FOREIGN KEY (`permission_id`)
+    REFERENCES `mydb`.`Permission` (`permission_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Operation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Operation` (
+  `operation_id` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`operation_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Permission_Operation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Permission_Operation` (
+  `permissin_operation_id` VARCHAR(100) NOT NULL,
+  `permission_id` VARCHAR(100) NULL,
+  `operation_id` VARCHAR(100) NULL,
+  PRIMARY KEY (`permissin_operation_id`),
+  INDEX `permission_id_idx` (`permission_id` ASC) VISIBLE,
+  INDEX `operation_id_idx` (`operation_id` ASC) VISIBLE,
+  CONSTRAINT `permission_id`
+    FOREIGN KEY (`permission_id`)
+    REFERENCES `mydb`.`Permission` (`permission_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `operation_id`
+    FOREIGN KEY (`operation_id`)
+    REFERENCES `mydb`.`Operation` (`operation_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Module`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Module` (
+  `module_id` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`module_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Module_permission`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Module_permission` (
+  `module_permission_id` VARCHAR(100) NOT NULL,
+  `module_id` VARCHAR(100) NULL,
+  `permission_id` VARCHAR(100) NULL,
+  PRIMARY KEY (`module_permission_id`),
+  INDEX `permission_id_idx` (`permission_id` ASC) VISIBLE,
+  INDEX `module_id_idx` (`module_id` ASC) VISIBLE,
+  CONSTRAINT `permission_id`
+    FOREIGN KEY (`permission_id`)
+    REFERENCES `mydb`.`Permission` (`permission_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `module_id`
+    FOREIGN KEY (`module_id`)
+    REFERENCES `mydb`.`Module` (`module_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
