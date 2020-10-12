@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Category } from '../category';
+import categories from '../files/categories.json'
 
 @Component({
   selector: "app-category",
@@ -19,7 +20,9 @@ export class CategoryComponent implements OnInit{
   name : string;
 
   constructor(){
-   this.categoryList = [ { id:'001', name:'Furniture'}, {id:'002', name:'Cosmatics'}, {id:'003', name:'Food'}, {id:'004', name:'Stationary Items'}];
+
+    this.categoryList = categories;
+   // this.categoryList = [ { id:'001', name:'Furniture'}, {id:'002', name:'Cosmatics'}, {id:'003', name:'Food'}, {id:'004', name:'Stationary Items'}];
    // this.categoryList = [ 'Furniture', 'Cosmatics', 'Food', 'Stationary Items'];
    // this.category = this.categoryList[0];
    this.categorySelected = this.categoryList[0].name;
