@@ -29,7 +29,7 @@
           <div class="col-md-12">
               <div id="grid" class="row">
 
-                  <div *ngFor="let product of productList" class="mix col-sm-4 page1 page4 margin40">
+                  <div *ngFor="let product of productsToView" class="mix col-sm-4 page1 page4 margin40">
                       <div class="item-img-wrap ">
                         <div class="img-wrapper">
                           <img  [src]="product.images[0]" class="img-responsive img-layout" alt="workimg" (click)="viewProduct(product)">
@@ -52,7 +52,7 @@
       </div>
 
       <!-- paginatin section -->
-      <div class="row gallery-bottom">
+      <div class="row gallery-bottom"   *ngIf="productsView" >
           <div class="col-sm-6">
               <ul class="pagination">
                   <li>
@@ -73,7 +73,7 @@
               </ul>
           </div>
           <div class="col-sm-6 text-right">
-              <em>Displaying 1 to 8 (of 100 posts)</em>
+              <em>Displaying {{ (currentPageNumber * perPageElements) + 1}} to {{( (currentPageNumber +1)* perPageElements) }} (of {{numberOfElements}} posts)</em>
           </div>
       </div>
 

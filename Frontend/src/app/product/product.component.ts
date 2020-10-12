@@ -18,6 +18,13 @@ export class ProductComponent implements OnInit {
   @Input() imageList : string[];
 
   productList : Product[];
+  productsToView : Product[];
+
+  numberOfElements : number = 0;
+  perPageElements : number = 6;  // static value for per page images
+  numberOfPages : number = 0;
+  currentPageNumber : number = 0;
+
 
   constructor(private sharedService : SharedService) {
 
@@ -30,6 +37,18 @@ console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clicke
 
   clickEventSubscription : Subscription;
 
+  pagination(){
+    this.numberOfElements = this.productList.length;
+    this.numberOfPages = this.numberOfElements/ this.perPageElements;
+    this.numberOfPages = Math.trunc(this.numberOfPages);
+
+    if( (this.numberOfElements % this.perPageElements ) >0 ){
+      this.numberOfPages++;
+    }
+
+    this.productsToView = this.productList.slice( (this.currentPageNumber * this.perPageElements) +1, ((this.currentPageNumber +1 ) * this.perPageElements) +1);
+  }
+
 /*
 * Fetch all products of a particular category
 */
@@ -40,6 +59,7 @@ console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clicke
           this.productsView = true;
           this.singleProductView =false;
 
+          this.pagination();
     }
 
 
@@ -56,12 +76,17 @@ console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clicke
     this.singleProductView = true;
     this.productsView = false;
 
-
   }
+
+
 
 
   ngOnInit(): void {
+
     this.productList = products[this.currentCategoryId];
+    this.pagination();
   }
+
+
 
 }
