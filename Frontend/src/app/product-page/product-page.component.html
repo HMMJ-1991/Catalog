@@ -2,12 +2,7 @@
 <div class="jumbotron" *ngIf="singleProductView">
   <h3>{{product.name}} for Price : {{product.price}}</h3>
   <p>Category Description</p>
-  <!-- <p>To see the difference between static and fixed top navbars, just scroll.</p> -->
-  <!-- <p>
-    <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-  </p> -->
 
-  <!-- <img [src]="product.images[0]" alt=""> -->
 
 <ngb-carousel *ngIf="product.images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
   <ng-template ngbSlide *ngFor="let image of product.images">

@@ -1,18 +1,8 @@
-<!-- <div class="content-container">
-
-  <div class="container-fluid">
-  </div>
-</div> -->
-
 
 <div for="products-view">
     <div class="jumbotron"  *ngIf="productsView" >
       <h3>{{currentCategory}}, Category Code: {{currentCategoryId}}</h3>
       <p>Category Description</p>
-      <!-- <p>To see the difference between static and fixed top navbars, just scroll.</p> -->
-      <!-- <p>
-        <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-      </p> -->
 
       <div class="row">
         <div class="col-sm-2" *ngFor="let image of imageList">
@@ -64,7 +54,9 @@
                   <li><a href="#">2</a></li>
                   <li><a href="#">3</a></li>
                   <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
+                  <li *ngIf = "numberOfPages > "><a href="#">5</a></li>
+
+                  numberOfPages
                   <li>
                       <a href="#" aria-label="Next">
                           <span aria-hidden="true">»</span>
