@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../product';
-import products from '../files/products.json'
-
+import products from '../files/products.json';
+import { SharedService } from './../shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -14,13 +15,23 @@ export class ProductComponent implements OnInit {
   @Input() currentCategoryId:string;
   productList : Product[];
 
-  constructor() {
+  constructor(private sharedService:SharedService) {
 
+console.log("  >>>>>>>>>> clikced product category " + this.sharedService.clickedId);
+
+    this.clickEventSubscription = this.sharedService.getClickEvent().subscribe( () =>{
+      this.fetchProducts();
+    })
   }
+
+  clickEventSubscription : Subscription;
 
 
     fetchProducts(){
-          this.productList = products[this.currentCategoryId];
+      console.log("shared service is triggered");
+
+          // this.productList = products[this.currentCategoryId];
+          this.productList = products[this.sharedService.clickedId];
     }
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Category } from '../category';
-import categories from '../files/categories.json'
+import categories from '../files/categories.json';
+import { SharedService } from './../shared.service';
 
 @Component({
   selector: "app-category",
@@ -19,7 +20,7 @@ export class CategoryComponent implements OnInit{
   id : string;
   name : string;
 
-  constructor(){
+  constructor( private sharedService : SharedService){
 
     this.categoryList = categories;
    // this.categoryList = [ { id:'001', name:'Furniture'}, {id:'002', name:'Cosmatics'}, {id:'003', name:'Food'}, {id:'004', name:'Stationary Items'}];
@@ -35,6 +36,8 @@ export class CategoryComponent implements OnInit{
   selectCategory(category){
     this.categorySelected = category.name;
     this.categorySelectedId = category.id;
+    this.sharedService.clickedId = category.id;
+    this.sharedService.sendClickEvent(category.id);
 
   }
 

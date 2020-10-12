@@ -25,18 +25,12 @@
           <div class="col-md-12">
               <div id="grid" class="row">
 
-                <li *ngFor="let category of categoryList" (click)="selectCategory(category)">
-                  <a href="#">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i> {{category.name}}
-                  </a>
-                </li>
-
                   <div *ngFor="let product of productList" class="mix col-sm-4 page1 page4 margin40">
                       <div class="item-img-wrap ">
                           <img  [src]="product.images[0]" class="img-responsive" alt="workimg">
                           <div class="item-img-overlay">
                               <a href="#" class="show-image">
-                                  <span></span>
+                                  <span>{{product.name}}</span>
                               </a>
                           </div>
                           <h4 class="text-center">{{product.name}}</h4>
@@ -45,82 +39,7 @@
                       </div>
 
                   </div>
-                  <!-- <div class="mix col-sm-3 page2 page3 margin30">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/20B2AA/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
 
-                  </div>
-                  <div class="mix col-sm-3  page3 page2 margin30 ">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/87CEFA/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="mix col-sm-3  page4 margin30">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/EE82EE/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="mix col-sm-3 page1 margin30 ">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/#FF6347/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="mix col-sm-3  page2 margin30">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/008080/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="mix col-sm-3  page3 margin30">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/DDA0DD/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-
-                  </div>
-                  <div class="mix col-sm-3 page4  margin30">
-                      <div class="item-img-wrap ">
-                          <img src="https://via.placeholder.com/312x315/FFA500/000000" class="img-responsive" alt="workimg">
-                          <div class="item-img-overlay">
-                              <a href="#" class="show-image">
-                                  <span></span>
-                              </a>
-                          </div>
-                      </div>
-                  </div> -->
               </div><!--grid-->
           </div>
       </div>
